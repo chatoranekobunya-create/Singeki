@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>進撃の巨人グッズ一覧 | paru-hub.com</title>
+    <meta name="description" content="進撃の巨人の公式・関連グッズを楽天から自動収集した一覧ページです。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Cinzel:wght@700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --bg-card: #111111;
+            --bg-card2: #181818;
+            --accent: #c0392b;
+            --accent-dim: #7d1a13;
+            --text: #e8e8e8;
+            --text-dim: #888888;
+            --border: #2a2a2a;
+            --border-hover: #c0392b;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', 'Yu Mincho', serif;
+            background-color: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+        }
+
+        /* ---- ページ全体のコンテナ ---- */
+        .page-wrap {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px 60px;
+        }
+
+        /* ---- ヘッダーセクション ---- */
+        .site-header {
+            position: relative;
+            padding: 60px 0 40px;
+            text-align: center;
+            overflow: hidden;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 48px;
+        }
+
+        /* 背景の大きな透かし文字 */
+        .site-header::before {
+            content: 'GOODS';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Cinzel', serif;
+            font-size: clamp(80px, 18vw, 180px);
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.03);
+            white-space: nowrap;
+            pointer-events: none;
+            letter-spacing: 0.15em;
+            user-select: none;
+        }
+
+        .header-eyebrow {
+            font-family: 'Cinzel', serif;
+            font-size: 0.75em;
+            letter-spacing: 0.35em;
+            color: var(--accent);
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .site-header h1 {
+            font-size: clamp(1.6em, 4vw, 2.6em);
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            line-height: 1.3;
+            margin-bottom: 10px;
+        }
+
+        .site-header .subtitle {
+            font-size: 0.85em;
+            color: var(--text-dim);
+            letter-spacing: 0.08em;
+            margin-bottom: 6px;
+        }
+
+        .site-header .disclaimer {
+            font-size: 0.7em;
+            color: #555;
+            margin-top: 8px;
+        }
+
+        /* 赤いアクセントライン */
+        .accent-line {
+            width: 48px;
+            height: 2px;
+            background: var(--accent);
+            margin: 20px auto 0;
+        }
+
+        /* ---- 検索・ソートバー ---- */
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+            margin-bottom: 32px;
+        }
+
+        input[type="text"] {
+            padding: 10px 16px;
+            font-size: 14px;
+            font-family: inherit;
+            border: 1px solid var(--border);
+            border-radius: 0;
+            width: 260px;
+            max-width: 100%;
+            background: var(--bg-card);
+            color: var(--text);
+            outline: none;
+            transition: border-color 0.2s;
+            letter-spacing: 0.05em;
+        }
+
+        input[type="text"]::placeholder {
+            color: #444;
+        }
+
+        input[type="text"]:focus {
+            border-color: var(--accent);
+        }
+
+        select {
+            padding: 10px 16px;
+            font-size: 14px;
+            font-family: inherit;
+            border: 1px solid var(--border);
+            border-radius: 0;
+            background: var(--bg-card);
+            color: var(--text);
+            cursor: pointer;
+            outline: none;
+            transition: border-color 0.2s;
+            letter-spacing: 0.05em;
+        }
+
+        select:focus {
+            border-color: var(--accent);
+        }
+
+        /* ---- ステータス ---- */
+        #status {
+            text-align: center;
+            color: var(--text-dim);
+            font-size: 0.9em;
+            letter-spacing: 0.1em;
+            margin: 40px auto;
+        }
+
+        .spinner {
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            border-top-color: var(--accent);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            vertical-align: middle;
+            margin-right: 8px;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* ---- 件数 ---- */
+        .result-count {
+            font-family: 'Cinzel', serif;
+            font-size: 0.75em;
+            letter-spacing: 0.25em;
+            color: var(--text-dim);
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        /* ---- グリッド ---- */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+            gap: 1px;
+            background: var(--border);
+            border: 1px solid var(--border);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* ---- カード ---- */
+        .product-card {
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+            color: var(--text);
+            background-color: var(--bg-card);
+            overflow: hidden;
+            transition: background-color 0.2s;
+            position: relative;
+        }
+
+        .product-card:hover {
+            background-color: var(--bg-card2);
+        }
+
+        /* ホバー時の左赤ライン */
+        .product-card::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: var(--accent);
+            transform: scaleY(0);
+            transform-origin: bottom;
+            transition: transform 0.25s ease;
+        }
+
+        .product-card:hover::after {
+            transform: scaleY(1);
+        }
+
+        .card-img-wrap {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            overflow: hidden;
+            background: #0d0d0d;
+        }
+
+        .card-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            opacity: 0.92;
+            transition: opacity 0.3s, transform 0.4s;
+        }
+
+        .product-card:hover .card-img-wrap img {
+            opacity: 1;
+            transform: scale(1.04);
+        }
+
+        .card-body {
+            padding: 14px 16px 10px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            border-top: 1px solid var(--border);
+        }
+
+        .card-name {
+            font-size: 0.8em;
+            line-height: 1.55;
+            color: var(--text);
+            letter-spacing: 0.03em;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .card-price {
+            font-family: 'Cinzel', serif;
+            font-size: 0.95em;
+            color: var(--accent);
+            letter-spacing: 0.08em;
+            margin-top: auto;
+        }
+
+        .card-btn {
+            display: block;
+            margin: 10px 16px 16px;
+            padding: 9px 0;
+            text-align: center;
+            background: transparent;
+            border: 1px solid var(--accent-dim);
+            font-size: 0.78em;
+            font-family: 'Cinzel', serif;
+            letter-spacing: 0.2em;
+            color: var(--accent);
+            text-transform: uppercase;
+            transition: background 0.2s, border-color 0.2s, color 0.2s;
+        }
+
+        .product-card:hover .card-btn {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: #fff;
+        }
+
+        /* ---- エラー ---- */
+        .error-box {
+            border: 1px solid var(--accent);
+            color: var(--text);
+            padding: 30px;
+            text-align: center;
+            max-width: 600px;
+            margin: 60px auto;
+            letter-spacing: 0.05em;
+        }
+
+        /* ---- スマホ調整 ---- */
+        @media (max-width: 540px) {
+            .grid-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .page-wrap {
+                padding: 0 12px 40px;
+            }
+
+            .site-header {
+                padding: 40px 12px 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="page-wrap">
+
+        <header class="site-header">
+            <p class="header-eyebrow">Rakuten × Shingeki</p>
+            <h1>進撃の巨人グッズ一覧</h1>
+            <p class="subtitle">楽天市場から自動収集したグッズ情報</p>
+            <p class="disclaimer">楽天アフィリエイトプログラムを利用しています。</p>
+            <div class="accent-line"></div>
+        </header>
+
+        <div class="controls">
+            <input type="text" id="searchInput" placeholder="商品名で絞り込み...">
+            <select id="sortSelect">
+                <option value="default">並び順：デフォルト</option>
+                <option value="price-asc">価格が安い順</option>
+                <option value="price-desc">価格が高い順</option>
+            </select>
+        </div>
+
+        <div id="status"><span class="spinner"></span>商品データを読み込み中...</div>
+        <div class="result-count" id="resultCount"></div>
+        <div class="grid-container" id="productGrid"></div>
+
+        <script>
+            // =============================================
+            // ▼ GAS WebアプリのURLをここに貼り付けてください
+            // =============================================
+            // Antigravityが作ってくれたコードのこの部分を探してね！
+            const GAS_URL = 'https://script.google.com/macros/s/AKfycby53AGVzYwY6WwbbU66E4BnIWKx0ybuum-kZuHH5YRCgNMkP4OdTsbo59965nE1Q9e14A/exec';
+            // =============================================
+
+            let allProducts = [];
+
+            async function fetchProducts() {
+                try {
+                    const res = await fetch(GAS_URL);
+                    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                    const data = await res.json();
+                    allProducts = data;
+                    document.getElementById('status').style.display = 'none';
+                    renderProducts(allProducts);
+                } catch (e) {
+                    document.getElementById('status').innerHTML = '';
+                    const grid = document.getElementById('productGrid');
+                    grid.innerHTML = `<div class="error-box">
+                    <strong>⚠️ データの読み込みに失敗しました</strong><br>
+                    <small>${e.message}</small>
+                </div>`;
+                }
+            }
+
+            function formatPrice(price) {
+                const n = Number(price);
+                if (isNaN(n)) return price;
+                return '¥' + n.toLocaleString('ja-JP');
+            }
+
+            function renderProducts(products) {
+                const grid = document.getElementById('productGrid');
+                const count = document.getElementById('resultCount');
+
+                if (products.length === 0) {
+                    grid.innerHTML = '<p style="color:var(--text-dim);text-align:center;grid-column:1/-1;padding:60px 0;letter-spacing:0.1em;">該当する商品がありません。</p>';
+                    count.textContent = '';
+                    return;
+                }
+
+                count.textContent = `${products.length} 件表示中`;
+
+                grid.innerHTML = products.map(p => `
+                <a href="${escHtml(p.affiliateUrl)}" target="_blank" rel="noopener noreferrer" class="product-card">
+                    <div class="card-img-wrap">
+                        <img src="${escHtml(p.imageUrl)}" alt="${escHtml(p.name)}" loading="lazy"
+                             onerror="this.src='https://placehold.co/300x300/f0f0f0/999?text=No+Image'">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-name">${escHtml(p.name)}</div>
+                        <div class="card-price">${formatPrice(p.price)}</div>
+                    </div>
+                    <span class="card-btn">🛒 楽天で見る</span>
+                </a>
+            `).join('');
+            }
+
+            function escHtml(str) {
+                return String(str ?? '')
+                    .replace(/&/g, '&amp;')
+                    .replace(/</g, '&lt;')
+                    .replace(/>/g, '&gt;')
+                    .replace(/"/g, '&quot;');
+            }
+
+            function getFilteredAndSorted() {
+                const word = document.getElementById('searchInput').value.trim().toLowerCase();
+                const sort = document.getElementById('sortSelect').value;
+
+                let result = allProducts.filter(p =>
+                    !word || String(p.name).toLowerCase().includes(word)
+                );
+
+                if (sort === 'price-asc') {
+                    result = result.sort((a, b) => Number(a.price) - Number(b.price));
+                } else if (sort === 'price-desc') {
+                    result = result.sort((a, b) => Number(b.price) - Number(a.price));
+                }
+
+                return result;
+            }
+
+            document.getElementById('searchInput').addEventListener('input', () => {
+                renderProducts(getFilteredAndSorted());
+            });
+
+            document.getElementById('sortSelect').addEventListener('change', () => {
+                renderProducts(getFilteredAndSorted());
+            });
+
+            fetchProducts();
+        </script>
+
+    </div><!-- /.page-wrap -->
+
+</body>
+
+</html>
