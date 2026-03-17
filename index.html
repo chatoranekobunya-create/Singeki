@@ -100,6 +100,57 @@
             margin-top: 8px;
         }
 
+        /* ---- PR表記バナー ---- */
+        .pr-notice {
+            text-align: center;
+            font-size: 0.78em;
+            color: #aaa;
+            letter-spacing: 0.06em;
+            padding: 8px 16px;
+            margin-bottom: 4px;
+        }
+
+        /* ---- 海外ユーザー向けガイド ---- */
+        .intl-guide {
+            border: 1px solid #2a2a2a;
+            background: #111;
+            max-width: 640px;
+            margin: 0 auto 40px;
+            padding: 14px 20px;
+            text-align: center;
+            font-size: 0.8em;
+            color: #999;
+            letter-spacing: 0.05em;
+            line-height: 1.7;
+        }
+
+        .intl-guide strong {
+            color: #c0392b;
+            font-family: 'Cinzel', serif;
+            font-size: 0.85em;
+            letter-spacing: 0.2em;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .intl-guide a {
+            color: #c0392b;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+
+        /* ---- フッター免責事項 ---- */
+        .site-footer {
+            margin-top: 64px;
+            padding: 24px 16px;
+            border-top: 1px solid #1e1e1e;
+            text-align: center;
+            font-size: 0.72em;
+            color: #555;
+            line-height: 1.9;
+            letter-spacing: 0.04em;
+        }
+
         /* 赤いアクセントライン */
         .accent-line {
             width: 48px;
@@ -277,6 +328,7 @@
             letter-spacing: 0.03em;
             display: -webkit-box;
             -webkit-line-clamp: 3;
+            line-clamp: 3;
             -webkit-box-orient: vertical;
             overflow: hidden;
         }
@@ -350,6 +402,16 @@
             <div class="accent-line"></div>
         </header>
 
+        <p class="pr-notice">※当サイトはアフィリエイト広告（PR）を利用しています。&nbsp;&nbsp;*This site uses affiliate links (PR).</p>
+
+        <div class="intl-guide">
+            <strong>🌏 INTERNATIONAL BUYERS</strong>
+            For international shipping, please use proxy purchasing services like
+            <a href="https://buyee.jp" target="_blank" rel="noopener noreferrer">Buyee</a>
+            or
+            <a href="https://www.worldshopping.global" target="_blank" rel="noopener noreferrer">WorldShopping</a>.
+        </div>
+
         <div class="controls">
             <input type="text" id="searchInput" placeholder="商品名で絞り込み...">
             <select id="sortSelect">
@@ -368,7 +430,7 @@
             // ▼ GAS WebアプリのURLをここに貼り付けてください
             // =============================================
             // Antigravityが作ってくれたコードのこの部分を探してね！
-            const GAS_URL = 'https://script.googleusercontent.com/macros/echo?user_content_key=AY5xjrQ9RXyVmvKvs6OpAPU6-xNvwwY9D2TpATXETDC5f-SGOG6l81A8oMPzPn9SjBVOz17Lm_vu7ISS5zPM9UDKVuaHoIJGVmdySMsfalbI2AYK9o9F7kS3Wz92tUXXaB3aCNxtDQgbi1PITDC6mu8zYzdQei44QrYdH-09duytXIctG7YehN9ES_t-17ietHtE71BTvTbjLJRImGVG47pMuaBXrcyrMmSOZ9sYaG-qSQYpNHETQOi8V0uK229mCsPrr4_PlNev0sXRIO98TVLeMapXF25vEHJTmh3NYtKi&lib=M8Qi3c-T-0ujlkjvWeMz3ihAEPTd_MNNA';
+            const GAS_URL = 'https://script.google.com/macros/s/AKfycby53AGVzYwY6WwbbU66E4BnIWKx0ybuum-kZuHH5YRCgNMkP4OdTsbo59965nE1Q9e14A/exec';
             // =============================================
 
             let allProducts = [];
@@ -459,6 +521,12 @@
 
             fetchProducts();
         </script>
+
+        <footer class="site-footer">
+            Amazonのアソシエイトとして、当サイトは適格販売により収入を得ています。<br>
+            また、楽天アフィリエイトおよび各種ASP（アニメイト等）のアフィリエイトプログラムに参加しており、記事内に設けられたプロモーション（PR）リンクを経由して商品が購入された場合、当サイトは利益を得ることがあります。<br>
+            ※商品に関する価格や在庫状況などは変更される場合があります。最新の詳細は各販売サイトでご確認ください。
+        </footer>
 
     </div><!-- /.page-wrap -->
 
