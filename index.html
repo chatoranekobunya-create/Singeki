@@ -430,14 +430,14 @@
             // ▼ GAS WebアプリのURLをここに貼り付けてください
             // =============================================
             // Antigravityが作ってくれたコードのこの部分を探してね！
-            const GAS_URL = 'https://script.google.com/macros/s/AKfycby53AGVzYwY6WwbbU66E4BnIWKx0ybuum-kZuHH5YRCgNMkP4OdTsbo59965nE1Q9e14A/exec';
+            const GAS_URL = 'https://script.google.com/macros/s/AKfycby53AGVzYwY6WwbbU66E4BnIWKx0ybuum-kZuHH5YRcGnMKp4OdTsbo59965nEIQ9e14A/exec';
             // =============================================
 
             let allProducts = [];
 
             async function fetchProducts() {
                 try {
-                    const res = await fetch(GAS_URL);
+                    const res = await fetch(GAS_URL, { redirect: 'follow' });
                     if (!res.ok) throw new Error(`HTTP ${res.status}`);
                     const data = await res.json();
                     allProducts = data;
